@@ -1,0 +1,36 @@
+/* Super Direct Image Styling */
+.super-direct-image-container {
+  display: block !important;
+  position: relative !important;
+  margin: 10px 0 !important;
+  text-align: center !important;
+  max-width: 100% !important;
+  user-select: none !important;
+}
+
+.super-direct-image {
+  max-width: 90% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  border-radius: 2px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  transition: box-shadow 0.2s ease !important;
+}
+
+.super-direct-image:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Make sure the image is selectable */
+.super-direct-image-container.selected,
+.super-direct-image.selected {
+  outline: 2px solid #1a73e8 !important;
+  border-radius: 2px !important;
+}
+
+/* Add special styling for image paragraphs */
+p.image-paragraph {
+  margin: 16px 0 !important;
+  text-align: center !important;
+}

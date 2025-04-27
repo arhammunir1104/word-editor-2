@@ -1,0 +1,97 @@
+/**
+ * Google Docs Bullet List Styling
+ * 
+ * This CSS implements the exact bullet symbols and styles used by Google Docs:
+ * - Level 1: • (solid round bullet)
+ * - Level 2: ◦ (hollow round bullet)
+ * - Level 3: ▪ (solid square bullet)
+ * - Level 4: ‣ (triangle bullet)
+ * - Level 5+: cycles back to level 1 style
+ */
+
+/* Base style for all list items to ensure proper spacing and alignment */
+ul.custom-bullet-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; /* Remove browser default bullets */
+}
+
+/* Remove default browser bullets */
+ul.custom-bullet-list li {
+  position: relative;
+  padding-left: 1.5em; /* Space for the custom bullet */
+  list-style-type: none;
+}
+
+/* Common properties for all bullets to ensure consistent positioning */
+ul.custom-bullet-list li::before {
+  position: absolute;
+  display: inline-block;
+  left: 0.2em;
+  font-weight: normal; /* Ensure consistent weight across browsers */
+}
+
+/* LEVEL 1: • (solid round bullet) */
+ul.custom-bullet-list.level-1 > li::before,
+ul.custom-bullet-list li.level-1::before {
+  content: "•";
+  font-size: 1.2em;
+  color: #000;
+  line-height: 1.2;
+  transform: translateY(-0.1em); /* Better vertical alignment */
+}
+
+/* LEVEL 2: ◦ (hollow round bullet) */
+ul.custom-bullet-list.level-2 > li::before,
+ul.custom-bullet-list li.level-2::before {
+  content: "◦";
+  font-size: 1.2em;
+  color: #000;
+  line-height: 1.2;
+  transform: translateY(-0.1em); /* Better vertical alignment */
+}
+
+/* LEVEL 3: ▪ (solid square bullet) */
+ul.custom-bullet-list.level-3 > li::before,
+ul.custom-bullet-list li.level-3::before {
+  content: "▪";
+  font-size: 1em;
+  color: #000;
+  line-height: 1.4; /* Adjust line height for square bullet */
+}
+
+/* LEVEL 4: ‣ (triangle bullet) */
+ul.custom-bullet-list.level-4 > li::before,
+ul.custom-bullet-list li.level-4::before {
+  content: "‣";
+  font-size: 1em;
+  color: #000;
+  line-height: 1.4;
+}
+
+/* LEVEL 5: cycle back to • (solid round bullet) */
+ul.custom-bullet-list.level-5 > li::before,
+ul.custom-bullet-list li.level-5::before {
+  content: "•";
+  font-size: 1.2em;
+  color: #000;
+  line-height: 1.2;
+  transform: translateY(-0.1em);
+}
+
+/* Indentation for nested list levels - increase indent based on nesting level */
+ul.custom-bullet-list ul {
+  margin-left: 1em; /* Standard indent for nested lists */
+}
+
+/* Ensure proper spacing between list items */
+ul.custom-bullet-list li {
+  margin-bottom: 0.3em;
+}
+
+/* Fix for bullet position in Firefox */
+@-moz-document url-prefix() {
+  ul.custom-bullet-list li::before {
+    margin-top: -0.1em;
+  }
+}

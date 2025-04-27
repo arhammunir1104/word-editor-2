@@ -1,0 +1,21 @@
+/* Simple Red Box Styling */
+.simple-red-box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin: 10px 0;
+  border: 2px solid darkred;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  user-select: none;
+}
+
+.simple-red-box.ProseMirror-selectednode {
+  border: 3px solid blue;
+  outline: none;
+  border-radius: 4px;
+}
+
+.simple-red-box:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}

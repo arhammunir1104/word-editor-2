@@ -1,0 +1,35 @@
+/* Ultimate Red Box Styling */
+.ultimate-red-box {
+  width: 100px !important;
+  height: 100px !important;
+  background-color: red !important;
+  margin: 10px 0 !important;
+  border: 2px solid darkred !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+  user-select: none !important;
+  display: block !important;
+  position: relative !important;
+  cursor: pointer !important;
+}
+
+.ultimate-red-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+/* Selection state */
+.ultimate-red-box.ProseMirror-selectednode {
+  border: 3px solid blue !important;
+  outline: none !important;
+}
+
+/* Hover state */
+.ultimate-red-box:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+}

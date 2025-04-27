@@ -1,0 +1,157 @@
+/**
+ * Image Styles
+ * 
+ * CSS for rendering and manipulating images in Google Docs style
+ * - Resize handles
+ * - Selection indicators
+ * - Caption styling
+ * - Responsiveness
+ */
+
+/* Basic image styling */
+.ProseMirror img.resizable-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 2px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* Highlight selected images */
+.ProseMirror img.resizable-image[data-is-selected="true"] {
+  box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.3);
+  border-radius: 2px;
+}
+
+/* Figure container for images with captions */
+.ProseMirror figure.resizable-image-figure {
+  margin: 1.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+/* Caption styling */
+.ProseMirror figcaption.image-caption {
+  color: #6b7280;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 0.5rem;
+  width: 100%;
+  font-style: italic;
+}
+
+/* Resize handles */
+.ProseMirror .resize-handle {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background-color: #3b82f6;
+  border: 1px solid white;
+  border-radius: 50%;
+  z-index: 20;
+}
+
+/* Handle positions */
+.ProseMirror .resize-handle.top-left {
+  top: -5px;
+  left: -5px;
+  cursor: nwse-resize;
+}
+
+.ProseMirror .resize-handle.top-right {
+  top: -5px;
+  right: -5px;
+  cursor: nesw-resize;
+}
+
+.ProseMirror .resize-handle.bottom-left {
+  bottom: -5px;
+  left: -5px;
+  cursor: nesw-resize;
+}
+
+.ProseMirror .resize-handle.bottom-right {
+  bottom: -5px;
+  right: -5px;
+  cursor: nwse-resize;
+}
+
+/* Image resizing during active resize operation */
+.ProseMirror.resize-active {
+  user-select: none;
+}
+
+.ProseMirror.resize-active img.resizable-image {
+  transition: none !important;
+}
+
+/* Resize overlay during active resize */
+.resize-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: nwse-resize;
+  z-index: 100;
+}
+
+/* Image dimensions display during resize */
+.image-dimensions-display {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 21;
+  font-family: monospace;
+}
+
+/* Tooltip for image controls */
+.image-control-tooltip {
+  position: absolute;
+  z-index: 30;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+  display: flex;
+  gap: 4px;
+}
+
+.image-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #4b5563;
+}
+
+.image-control-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* Responsive behavior */
+@media (max-width: 640px) {
+  .ProseMirror img.resizable-image {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  .ProseMirror .resize-handle {
+    width: 14px;
+    height: 14px;
+  }
+}

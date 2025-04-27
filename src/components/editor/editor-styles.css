@@ -1,0 +1,236 @@
+/* Editor document styles */
+
+/* Enhanced Custom Bullet List Styles - Exactly matching Google Docs */
+ul.custom-bullet-list {
+  list-style-type: none;
+  padding-left: 1.5em;
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* 
+* Google Docs-style bullet markers for each nesting level:
+* - Level 1: • (solid round bullet)
+* - Level 2: ◦ (hollow round bullet)
+* - Level 3: ▪ (solid square bullet)
+* - Level 4: ‣ (triangle bullet)
+* - Level 5+: Cycles back to level 1 style
+*/
+
+/* Level 1: • (solid round bullet) */
+ul.custom-bullet-list.level-1 > li::before,
+ul.custom-bullet-list li.level-1::before {
+  content: "•";
+  font-size: 1.2em;
+  color: #000;
+  position: absolute;
+  left: 0;
+  margin-left: -1em;
+  line-height: 1.2;
+  transform: translateY(-0.1em); /* Better vertical alignment */
+}
+
+/* Level 2: ◦ (hollow round bullet) */
+ul.custom-bullet-list.level-2 > li::before,
+ul.custom-bullet-list li.level-2::before {
+  content: "◦";
+  font-size: 1.2em;
+  color: #000;
+  position: absolute;
+  left: 0;
+  margin-left: -1em;
+  line-height: 1.2;
+  transform: translateY(-0.1em); /* Better vertical alignment */
+}
+
+/* Level 3: ▪ (solid square bullet) */
+ul.custom-bullet-list.level-3 > li::before,
+ul.custom-bullet-list li.level-3::before {
+  content: "▪";
+  font-size: 1em;
+  color: #000;
+  position: absolute;
+  left: 0;
+  margin-left: -1em;
+  line-height: 1.4; /* Adjust line height for square bullet */
+}
+
+/* Level 4: ‣ (triangle bullet) */
+ul.custom-bullet-list.level-4 > li::before,
+ul.custom-bullet-list li.level-4::before {
+  content: "‣";
+  font-size: 1em;
+  color: #000;
+  position: absolute;
+  left: 0;
+  margin-left: -1em;
+  line-height: 1.4;
+}
+
+/* Level 5: • (cycle back to solid round bullet) */
+ul.custom-bullet-list.level-5 > li::before,
+ul.custom-bullet-list li.level-5::before {
+  content: "•";
+  font-size: 1.2em;
+  color: #000;
+  position: absolute;
+  left: 0;
+  margin-left: -1em;
+  line-height: 1.2;
+  transform: translateY(-0.1em);
+}
+
+/* Generic list item style rule */
+ul.custom-bullet-list li {
+  position: relative;
+  margin-bottom: 0.3em; /* Match Google Docs spacing */
+  padding-bottom: 0;
+  list-style-type: none;
+}
+
+/* Last item in list should have less bottom margin */
+ul.custom-bullet-list li:last-child {
+  margin-bottom: 0.1em;
+}
+
+/* Google Docs style indentation for nested lists */
+ul.custom-bullet-list ul.custom-bullet-list {
+  margin-left: 1.75em; /* Match Google Docs indentation exactly */
+  padding-left: 0;
+  margin-top: 0.2em; /* Small space at top of nested list */
+}
+
+/* List items should have the same indentation at all levels */
+ul.custom-bullet-list li {
+  padding-left: 0;
+}
+
+/* Better handle list items that contain blocks */
+ul.custom-bullet-list li p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Proper indentation for lists in editor */
+.ProseMirror ul.custom-bullet-list {
+  padding-left: 1.5em;
+}
+
+/* 
+* Visual feedback when list item is selected 
+* Match Google Docs subtle blue outline
+*/
+.ProseMirror ul.custom-bullet-list li.ProseMirror-selectednode {
+  outline: 1px solid rgba(66, 133, 244, 0.4); /* Google blue */
+  background-color: rgba(66, 133, 244, 0.05);
+}
+
+/* Support for mixed content inside list items (images, tables, etc.) */
+ul.custom-bullet-list li img {
+  display: block;
+  max-width: 100%;
+  margin: 0.5em 0;
+}
+
+/* Ensure tables inside lists are properly formatted */
+ul.custom-bullet-list li table {
+  margin: 0.5em 0;
+}
+
+/* Indentation guide lines for nested lists (Google Docs style) */
+ul.custom-bullet-list ul.custom-bullet-list {
+  border-left: 1px solid rgba(0, 0, 0, 0.05); /* Very subtle guide line */
+  padding-left: 0.2em;
+}
+
+/* For backward compatibility */
+.bullet-list {
+  list-style-type: none;
+  padding-left: 1.5em;
+  position: relative;
+}
+
+/* Page styles */
+.document-page {
+  transition: transform 0.2s ease-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background-color: white;
+  transform-style: flat; /* Prevent 3D layering issues */
+  backface-visibility: hidden; /* Prevent rendering artifacts */
+  -webkit-backface-visibility: hidden;
+}
+
+/* Special z-index handling for landscape pages */
+.document-page.landscape-page {
+  z-index: 5 !important; /* Force landscape pages above portrait pages */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Make portrait pages stay behind */
+.document-page.portrait-page {
+  z-index: 1;
+}
+
+.document-page.page-active {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Add visual separation between pages */
+.document-container > div:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+/* Prevent overlap between pages */
+.document-container {
+  margin-top: 1rem;
+  padding-bottom: 2rem;
+  position: relative;
+  isolation: isolate; /* Create stacking context */
+}
+
+/* Special container for different orientations to prevent bleed-through */
+[data-orientation="landscape"] {
+  position: relative;
+  z-index: 10; /* Force above portrait container */
+  isolation: isolate;
+}
+
+[data-orientation="portrait"] {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Style page content area */
+.page-content {
+  min-height: 100px;
+}
+
+/* Header/footer styles */
+.page-header, .page-footer {
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.page-header:hover, .page-footer:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Editor content styles */
+.editor-content {
+  height: 100%;
+  outline: none;
+}
+
+/* Page number styles */
+.page-number {
+  font-size: 0.75rem;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.document-page:hover .page-number {
+  opacity: 1;
+}

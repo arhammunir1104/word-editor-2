@@ -1,0 +1,149 @@
+/**
+ * Google Docs Table Styles
+ * 
+ * This stylesheet provides styles for tables in the editor that match
+ * the look and feel of Google Docs tables.
+ */
+
+/* Table container styles */
+.gdocs-table {
+  border-collapse: collapse;
+  width: auto;
+  margin: 16px 0;
+  table-layout: fixed;
+  border: 1px solid #d9d9d9;
+}
+
+/* Table cells */
+.gdocs-table-cell,
+.gdocs-table-header {
+  border: 1px solid #d9d9d9;
+  padding: 5px 7px;
+  min-width: 50px;
+  position: relative;
+  vertical-align: top;
+}
+
+/* Table header cells */
+.gdocs-table-header {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+/* Hover state for cells */
+.gdocs-table-cell:hover,
+.gdocs-table-header:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Table rows */
+.gdocs-table-row {
+  height: 25px;
+}
+
+/* Cell selection styles */
+.gdocs-table-cell.selected,
+.gdocs-table-header.selected {
+  background-color: #e8f0fe !important;
+  border-color: #4285f4 !important;
+}
+
+/* Column resize handles */
+.column-resize-handle {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: transparent;
+  cursor: col-resize;
+  z-index: 20;
+}
+
+.column-resize-handle:hover,
+.column-resize-handle.active {
+  background-color: #1a73e8;
+}
+
+/* Grid selector styles */
+.table-grid-selector {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 4px;
+}
+
+.table-grid-cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 1px;
+}
+
+.table-grid-cell.highlighted {
+  background-color: #e8f0fe;
+  border-color: #4285f4;
+}
+
+/* Context menu styles */
+.table-context-menu {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 6px 0;
+}
+
+.table-context-menu-item {
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #333;
+}
+
+.table-context-menu-item:hover {
+  background-color: #f3f3f3;
+}
+
+.table-context-menu-item.disabled {
+  color: #ccc;
+  cursor: default;
+}
+
+.table-context-menu-separator {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 6px 0;
+}
+
+/* Table grid selector container */
+.table-grid-selector-container {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Table grid header */
+.table-grid-header {
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #666;
+  font-family: Arial, sans-serif;
+}
+
+/* Table grid dimensions */
+.table-grid-dimensions {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+  font-family: Arial, sans-serif;
+}

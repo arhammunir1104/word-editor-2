@@ -1,0 +1,191 @@
+.page {
+  width: 816px; /* A4 width in pixels at 96 DPI */
+  min-height: 1123px; /* A4 height */
+  padding: 96px 72px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  margin-bottom: 16px;
+  background-color: white;
+  position: relative;
+}
+
+.header, .footer {
+  height: 54px;
+  border: 1px dashed #dadce0;
+  margin-bottom: 12px;
+  padding: 8px;
+}
+
+.footer {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.content {
+  min-height: 750px; /* Adjust as needed to make room for header/footer */
+}
+
+/* TipTap editor styles */
+.ProseMirror {
+  outline: none;
+  min-height: 100%;
+}
+
+.ProseMirror p {
+  margin-bottom: 1em;
+}
+
+.ProseMirror h1 {
+  font-size: 2.5em;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h2 {
+  font-size: 1.875em;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.ProseMirror h3 {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 2.5em;
+  margin-bottom: 1em;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 2.5em;
+  margin-bottom: 1em;
+}
+
+.ProseMirror ul ul,
+.ProseMirror ol ol,
+.ProseMirror ul ol,
+.ProseMirror ol ul {
+  margin-top: 0.25em;
+}
+
+.ProseMirror a {
+  color: #1a73e8;
+  text-decoration: underline;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-container:hover .image-controls {
+  display: flex;
+}
+
+.image-controls {
+  display: none;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border: 1px solid #1a73e8;
+}
+
+/* Dark mode */
+.dark .page {
+  background-color: #2d2e30;
+  color: #e8eaed;
+}
+
+.dark .header, .dark .footer {
+  border-color: #5f6368;
+}
+
+.dark .toolbar, .dark header {
+  background-color: #202124;
+  color: #e8eaed;
+  border-color: #5f6368;
+}
+
+.dark .bg-toolbar {
+  background-color: #202124;
+}
+
+.dark .bg-toolbar-hover:hover {
+  background-color: #3c4043;
+}
+
+/* Google Docs-like colors */
+:root {
+  --google-blue: #1a73e8;
+  --google-blue-hover: #1765cc;
+  --google-red: #d93025;
+  --google-green: #188038;
+  --google-yellow: #f9ab00;
+  --doc-bg: #f8f9fa;
+  --toolbar: #f1f3f4;
+  --toolbar-hover: #e8eaed;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --border-color: #dadce0;
+}
+
+.bg-google-blue {
+  background-color: var(--google-blue);
+}
+
+.bg-google-blue-hover:hover {
+  background-color: var(--google-blue-hover);
+}
+
+.text-google-blue {
+  color: var(--google-blue);
+}
+
+.border-google-blue {
+  border-color: var(--google-blue);
+}
+
+.bg-doc-bg {
+  background-color: var(--doc-bg);
+}
+
+.bg-toolbar {
+  background-color: var(--toolbar);
+}
+
+.bg-toolbar-hover:hover {
+  background-color: var(--toolbar-hover);
+}
+
+.text-text-primary {
+  color: var(--text-primary);
+}
+
+.text-text-secondary {
+  color: var(--text-secondary);
+}
+
+.border-border-color {
+  border-color: var(--border-color);
+}
+
+/* Custom placeholder */
+[data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: #5f6368;
+  font-style: italic;
+}

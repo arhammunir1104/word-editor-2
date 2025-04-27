@@ -1,0 +1,47 @@
+/* Styles for standard Image extension */
+.basic-image {
+  display: block !important;
+  max-width: 90% !important;
+  height: auto !important;
+  margin: 10px auto !important;
+  border-radius: 2px !important;
+  transition: box-shadow 0.2s ease !important;
+}
+
+.basic-image:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Alignment classes */
+.basic-image.align-left {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.basic-image.align-center {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.basic-image.align-right {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+/* Styles for image when it's being selected */
+.ProseMirror-selectednode.basic-image,
+.ProseMirror-selectednode img,
+img.ProseMirror-selectednode {
+  outline: 2px solid #1a73e8 !important;
+  box-shadow: 0 0 4px rgba(26, 115, 232, 0.4) !important;
+}
+
+/* Fix for images rendered by the standard TipTap Image extension */
+.ProseMirror img,
+.ProseMirror-content img {
+  display: block !important;
+  max-width: 90% !important;
+  height: auto !important;
+  margin: 10px auto !important;
+  border-radius: 2px !important;
+}

@@ -1,0 +1,153 @@
+/* Google Docs-style image styles */
+.gdoc-image {
+  display: block;
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  cursor: pointer !important;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Subtle hover effect to indicate interactivity */
+.gdoc-image:hover {
+  box-shadow: 0 0 3px rgba(26, 115, 232, 0.3);
+}
+
+.gdoc-image.selected {
+  border: 2px solid #1a73e8;
+  border-radius: 2px;
+  box-shadow: 0 0 4px rgba(26, 115, 232, 0.4);
+  /* Ensure cursor shows the image can be moved */
+  cursor: move !important;
+}
+
+.gdoc-image.align-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.gdoc-image.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gdoc-image.align-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border: 1px solid #1a73e8;
+  border-radius: 50%;
+  z-index: 100;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  /* Make sure they are always visible when image is selected */
+  pointer-events: auto;
+}
+
+/* Corner handles */
+.resize-handle.top-left {
+  top: -5px;
+  left: -5px;
+  cursor: nwse-resize;
+}
+
+.resize-handle.top-right {
+  top: -5px;
+  right: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-left {
+  bottom: -5px;
+  left: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-right {
+  bottom: -5px;
+  right: -5px;
+  cursor: nwse-resize;
+}
+
+/* Edge handles - Google Docs style */
+.resize-handle.top {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+}
+
+.resize-handle.right {
+  top: 50%;
+  right: -5px;
+  transform: translateY(-50%);
+  cursor: ew-resize;
+}
+
+.resize-handle.bottom {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+}
+
+.resize-handle.left {
+  top: 50%;
+  left: -5px;
+  transform: translateY(-50%);
+  cursor: ew-resize;
+}
+
+.gdoc-image-toolbar {
+  position: absolute;
+  display: flex;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  transform: translateX(-50%);
+}
+
+.gdoc-image-toolbar button {
+  padding: 4px 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.gdoc-image-toolbar button:hover {
+  background-color: #f1f3f4;
+}
+
+.gdoc-image-toolbar button.active {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+}
+
+.gdoc-image-caption {
+  text-align: center;
+  color: #5f6368;
+  font-size: 0.9em;
+  margin-top: 4px;
+  padding: 4px;
+  line-height: 1.2;
+}
+
+.gdoc-image-caption:focus {
+  outline: 1px solid #ddd;
+  background-color: #f8f9fa;
+}
+
+/* Prevent text selection while resizing */
+body.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}

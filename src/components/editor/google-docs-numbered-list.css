@@ -1,0 +1,75 @@
+/* Google Docs-style Numbered List Styling */
+.ProseMirror ol[data-type="orderedList"] {
+  padding-left: 0;
+  margin-left: 0;
+  list-style-position: inside;
+}
+
+/* Level 1: Numbers (1, 2, 3, ...) */
+.ProseMirror ol[data-type="orderedList"].gdoc-numbered-list-l1 {
+  list-style-type: decimal;
+  margin-left: 1.5em;
+}
+
+/* Level 2: Lowercase letters (a, b, c, ...) */
+.ProseMirror ol[data-type="orderedList"].gdoc-numbered-list-l2 {
+  list-style-type: lower-alpha;
+  margin-left: 3em;
+}
+
+/* Level 3: Lowercase roman numerals (i, ii, iii, ...) */
+.ProseMirror ol[data-type="orderedList"].gdoc-numbered-list-l3 {
+  list-style-type: lower-roman;
+  margin-left: 4.5em;
+}
+
+/* Level 4: Uppercase letters (A, B, C, ...) */
+.ProseMirror ol[data-type="orderedList"].gdoc-numbered-list-l4 {
+  list-style-type: upper-alpha;
+  margin-left: 6em;
+}
+
+/* Level 5: Uppercase roman numerals (I, II, III, ...) */
+.ProseMirror ol[data-type="orderedList"].gdoc-numbered-list-l5 {
+  list-style-type: upper-roman;
+  margin-left: 7.5em;
+}
+
+/* Apply proper spacing between list items */
+.ProseMirror ol[data-type="orderedList"] li {
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+  padding-left: 0.5em;
+}
+
+/* Reduce margin between nested lists for better spacing */
+.ProseMirror ol[data-type="orderedList"] ol[data-type="orderedList"] {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Apply correct list markers with different styles per level */
+.ProseMirror ol[data-type="orderedList"][data-level="1"] {
+  list-style-type: decimal;
+}
+
+.ProseMirror ol[data-type="orderedList"][data-level="2"] {
+  list-style-type: lower-alpha;
+}
+
+.ProseMirror ol[data-type="orderedList"][data-level="3"] {
+  list-style-type: lower-roman;
+}
+
+.ProseMirror ol[data-type="orderedList"][data-level="4"] {
+  list-style-type: upper-alpha;
+}
+
+.ProseMirror ol[data-type="orderedList"][data-level="5"] {
+  list-style-type: upper-roman;
+}
+
+/* Cycle back to decimal for levels beyond 5 */
+.ProseMirror ol[data-type="orderedList"][data-level="6"] {
+  list-style-type: decimal;
+}

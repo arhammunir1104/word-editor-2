@@ -1,0 +1,24 @@
+/* Custom overrides for link styling in TipTap editor */
+
+/* Super high specificity selectors to force styling */
+.ProseMirror a,
+.ProseMirror .ProseMirror-selectednode a,
+.ProseMirror mark[href] {
+  color: red !important; /* Intentionally using RED to ensure it's visible */
+  text-decoration: underline !important;
+  background-color: yellow !important; /* Very obvious background */
+  font-weight: bold !important;
+  padding: 0 2px !important;
+}
+
+/* Make sure this never gets overridden */
+html body .ProseMirror a,
+html body .tiptap a,
+html body .editor-wrapper a,
+html body .editor-link,
+html body [data-type="link"] {
+  color: red !important;
+  text-decoration: underline !important;
+  background-color: yellow !important;
+  font-weight: bold !important;
+}

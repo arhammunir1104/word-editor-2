@@ -1,0 +1,122 @@
+/**
+ * Google Docs bullet symbols for nested lists with exact spacing and styling
+ * 
+ * - Level 1: • (solid round bullet)
+ * - Level 2: ◦ (hollow round bullet)
+ * - Level 3: ▪ (solid square bullet)
+ * - Level 4: ‣ (triangle bullet)
+ * - Level 5+: cycle back to Level 1 style
+ */
+
+/* RESET ALL LIST STYLING */
+.ProseMirror ul,
+.ProseMirror ol {
+  list-style: none !important;
+  padding-left: 1.5em !important;
+  margin: 0.2em 0 !important; /* Reduced vertical margin to match Google Docs */
+}
+
+.ProseMirror li {
+  position: relative !important;
+  list-style-type: none !important;
+  padding-left: 0 !important; /* Remove padding from list items */
+  margin: 0.1em 0 !important; /* Minimal top/bottom margin between list items */
+}
+
+/* REMOVE DEFAULT BULLETS AND NUMBERS */
+.ProseMirror ul li::marker,
+.ProseMirror ol li::marker {
+  display: none !important;
+}
+
+/* EXACT GOOGLE DOCS SPACING AND POSITION FOR BULLETS */
+
+/* LEVEL 1: • (solid round bullet) */
+.ProseMirror ul > li::before {
+  content: "•" !important;
+  position: absolute !important;
+  left: -0.9em !important; /* Tighter spacing: Google Docs has ~8-10px gap */
+  top: 0.05em !important; /* Slight vertical adjustment for better alignment */
+  font-size: 1.1em !important;
+  color: black !important;
+  line-height: 1 !important; /* Prevent vertical misalignment */
+}
+
+/* LEVEL 2: ◦ (hollow round bullet) */
+.ProseMirror ul > li > ul > li::before {
+  content: "◦" !important;
+  position: absolute !important;
+  left: -0.9em !important;
+  top: 0.05em !important;
+  font-size: 1.1em !important;
+  color: black !important;
+  line-height: 1 !important;
+}
+
+/* LEVEL 3: ▪ (solid square bullet) */
+.ProseMirror ul > li > ul > li > ul > li::before {
+  content: "▪" !important;
+  position: absolute !important;
+  left: -0.9em !important;
+  top: 0.1em !important; /* Square needs slight adjustment */
+  font-size: 0.8em !important; /* Smaller size matches Google Docs */
+  color: black !important;
+  line-height: 1.2 !important;
+}
+
+/* LEVEL 4: ‣ (triangle bullet) */
+.ProseMirror ul > li > ul > li > ul > li > ul > li::before {
+  content: "‣" !important;
+  position: absolute !important;
+  left: -0.9em !important;
+  top: 0.1em !important;
+  font-size: 0.9em !important;
+  color: black !important;
+  line-height: 1.1 !important;
+}
+
+/* LEVEL 5+: cycle back to previous styles */
+.ProseMirror ul > li > ul > li > ul > li > ul > li > ul > li::before {
+  content: "•" !important; /* Back to level 1 style */
+  position: absolute !important;
+  left: -0.9em !important;
+  top: 0.05em !important;
+  font-size: 1.1em !important;
+  color: black !important;
+  line-height: 1 !important;
+}
+
+/* TIGHTER INDENTATION THAT MATCHES GOOGLE DOCS */
+.ProseMirror ul ul {
+  padding-left: 1.2em !important; /* Reduced from 1.5em to match Google Docs */
+}
+
+/* CONSISTENT LINE HEIGHT INSIDE LIST ITEMS */
+.ProseMirror li p {
+  margin: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* BETTER SPACING FOR MULTI-LINE LIST ITEMS */
+.ProseMirror li > p + p {
+  margin-top: 0.3em !important;
+}
+
+/* PRESERVE NUMBERED LISTS */
+.ProseMirror ol {
+  padding-left: 1.5em !important;
+  counter-reset: item !important;
+}
+
+.ProseMirror ol > li {
+  counter-increment: item !important;
+}
+
+.ProseMirror ol > li::before {
+  content: counter(item) "." !important;
+  position: absolute !important;
+  left: -1.3em !important; /* Tighter spacing */
+  width: 1.1em !important;
+  text-align: right !important;
+  color: black !important;
+}

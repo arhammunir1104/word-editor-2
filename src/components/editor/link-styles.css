@@ -1,0 +1,85 @@
+/* 
+ * SUPER AGGRESSIVE LINK STYLING
+ * This CSS uses maximum specificity and !important flags to ensure
+ * links always appear properly styled regardless of editor state
+ */
+
+/* Ultra-specific selectors to catch all possible links */
+.ProseMirror a,
+.ProseMirror .editor-link,
+.ProseMirror [data-type="link"],
+.ProseMirror span[href],
+.ProseMirror mark[href],
+.ProseMirror a.editor-link,
+.ProseMirror *[href],
+.ProseMirror *[data-styled="true"],
+.tiptap a,
+div[contenteditable="true"] a,
+article a {
+  color: #1a73e8 !important; /* Google blue */
+  text-decoration: underline !important;
+  border-bottom: 1px solid #1a73e8 !important;
+  cursor: pointer !important;
+  padding: 0 1px !important;
+  background-color: rgba(26, 115, 232, 0.1) !important;
+  border-radius: 2px !important;
+  display: inline-block !important;
+  transition: all 0.1s ease-in-out !important;
+  position: relative !important; /* For pseudo-elements */
+}
+
+/* Extra obvious hover effect for links */
+.ProseMirror a:hover,
+.ProseMirror .editor-link:hover,
+.ProseMirror [data-type="link"]:hover,
+.ProseMirror span[href]:hover,
+.ProseMirror mark[href]:hover,
+.ProseMirror *[href]:hover,
+.ProseMirror *[data-styled="true"]:hover {
+  background-color: rgba(26, 115, 232, 0.15) !important;
+  border-bottom: 1px solid #1a73e8 !important;
+  text-decoration: underline !important;
+  box-shadow: 0 1px 2px rgba(26, 115, 232, 0.3) !important;
+}
+
+/* Force color on all children within links too */
+.ProseMirror a *,
+.ProseMirror .editor-link *,
+.ProseMirror [data-type="link"] *,
+.ProseMirror span[href] *,
+.ProseMirror *[href] * {
+  color: #1a73e8 !important;
+  text-decoration: underline !important;
+}
+
+/* Active state for clicks */
+.ProseMirror a:active,
+.ProseMirror .editor-link:active,
+.ProseMirror [data-type="link"]:active,
+.ProseMirror span[href]:active,
+.ProseMirror *[href]:active,
+.ProseMirror *[data-styled="true"]:active {
+  background-color: rgba(26, 115, 232, 0.2) !important;
+  transform: translateY(1px) !important;
+}
+
+/* Explicitly target the rendered links during editing */
+.tiptap a,
+.tiptap [href],
+.tiptap [data-type="link"],
+.tiptap .editor-link {
+  color: #1a73e8 !important;
+  text-decoration: underline !important;
+  background-color: rgba(26, 115, 232, 0.1) !important;
+  border-bottom: 1px solid #1a73e8 !important;
+  border-radius: 2px !important;
+}
+
+/* Focus indicator for keyboard navigation */
+.ProseMirror a:focus,
+.ProseMirror .editor-link:focus,
+.ProseMirror [data-type="link"]:focus,
+.ProseMirror *[href]:focus {
+  outline: 2px solid rgba(26, 115, 232, 0.4) !important;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2) !important;
+}

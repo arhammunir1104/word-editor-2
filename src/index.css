@@ -1,0 +1,739 @@
+@import './components/editor/bullet-symbols.css';
+@import './components/editor/google-docs-numbered-list.css';
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* CRITICAL COMMENT STYLING - MOST AGGRESSIVE APPROACH */
+
+/* Root level style for any element with comment ID */
+:root [data-comment-id] {
+  background-color: #FFEF9E !important;
+  background: #FFEF9E !important;
+  border-bottom: 2px solid #F2C94C !important;
+  padding: 2px 0 !important;
+  display: inline !important;
+  border-radius: 2px !important;
+}
+
+/* Target every possible selector */
+mark[data-comment-id],
+span[data-comment-id],
+p[data-comment-id],
+a[data-comment-id],
+*[data-comment-id] {
+  background-color: #FFEF9E !important;
+  background: #FFEF9E !important;
+  border-bottom: 2px solid #F2C94C !important;
+  padding: 2px 0 !important;
+  display: inline !important;
+  border-radius: 2px !important;
+}
+
+/* Target class-based selectors */
+.comment-mark,
+.yellow-highlight {
+  background-color: #FFEF9E !important;
+  background: #FFEF9E !important;
+  border-bottom: 2px solid #F2C94C !important;
+  padding: 2px 0 !important;
+  display: inline !important;
+  border-radius: 2px !important;
+}
+
+/* Target TipTap directly */
+.ProseMirror [data-comment-id],
+.ProseMirror mark.comment-mark,
+.ProseMirror span.comment-mark,
+.ProseMirror *[data-comment-id] {
+  background-color: #FFEF9E !important;
+  background: #FFEF9E !important;
+  border-bottom: 2px solid #F2C94C !important;
+  padding: 2px 0 !important;
+  display: inline !important;
+  border-radius: 2px !important;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+/* @layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+  
+*/
+
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/* Custom styles for the Google Docs clone */
+
+/* Main wrapper for the editor */
+.editor-wrapper {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container for the document content */
+.document-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 30px 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Individual page in the document */
+.document-page {
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Basic editor styling */
+.tiptap {
+  outline: none;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  padding: 0;
+  overflow: auto;
+}
+
+/* Styling for content inside the editor */
+.tiptap p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Page headers and footers */
+.page-header,
+.page-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  min-height: 30px;
+  padding: 5px 1in;
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 9pt;
+  cursor: text;
+}
+
+.page-header {
+  top: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.page-footer {
+  bottom: 0;
+  border-top: 1px solid #f0f0f0;
+  justify-content: flex-end;
+}
+
+/* Styles for non-editable state */
+.non-editable {
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* Highlight clickable header/footer areas when requested */
+.highlight-clickable {
+  animation: pulse 1s infinite alternate;
+  background-color: rgba(200, 230, 255, 0.2);
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(200, 230, 255, 0.2);
+  }
+
+  100% {
+    background-color: rgba(200, 230, 255, 0.5);
+  }
+}
+
+/* Google Docs-style page break */
+hr.page-break {
+  display: block;
+  position: relative;
+  border: none;
+  border-top: 1px dashed #CCC;
+  margin: 1.5rem 0;
+  margin-left: -1in;
+  margin-right: -1in;
+  overflow: visible;
+}
+
+hr.page-break::after {
+  content: "Page Break";
+  display: inline-block;
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f2f6fc;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  color: #888;
+  border-radius: 0.25rem;
+}
+
+/* Color picker styles */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.color-cell {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.color-cell:hover {
+  transform: scale(1.1);
+}
+
+/* Headings styles */
+.tiptap h1 {
+  font-size: 20pt;
+  font-weight: 400;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.tiptap h2 {
+  font-size: 16pt;
+  font-weight: 400;
+  color: #666;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+}
+
+.tiptap h3 {
+  font-size: 14pt;
+  font-weight: 400;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+}
+
+.tiptap h4 {
+  font-size: 12pt;
+  font-weight: 400;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+}
+
+/* Tooltip styles */
+.floating-menu {
+  position: absolute;
+  z-index: 50;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 5px;
+  animation: fadeIn 0.2s;
+  display: flex;
+  gap: 5px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Special styling for bullet lists */
+.ProseMirror ul li {
+  position: relative;
+  margin: 0;
+  padding-left: 1.5em;
+}
+
+.ProseMirror {
+  font-family: Arial, sans-serif;
+  font-size: 11px !important;
+}
+
+.comment-mark {
+  background-color: #FFEF9E !important;
+}
+
+
+
+
+/* 
+ * SUPER AGGRESSIVE LINK STYLING
+ * This CSS uses maximum specificity and !important flags to ensure
+ * links always appear properly styled regardless of editor state
+ */
+
+/* Ultra-specific selectors to catch all possible links */
+.ProseMirror a,
+.ProseMirror .editor-link,
+.ProseMirror [data-type="link"],
+.ProseMirror span[href],
+.ProseMirror mark[href],
+.ProseMirror a.editor-link,
+.ProseMirror *[href],
+.ProseMirror *[data-styled="true"],
+.tiptap a,
+div[contenteditable="true"] a,
+article a {
+  color: #1a73e8 !important;
+  /* Google blue */
+  text-decoration: underline !important;
+  border-bottom: 1px solid #1a73e8 !important;
+  cursor: pointer !important;
+  padding: 0 1px !important;
+  background-color: rgba(26, 115, 232, 0.1) !important;
+  border-radius: 2px !important;
+  display: inline-block !important;
+  transition: all 0.1s ease-in-out !important;
+  position: relative !important;
+  /* For pseudo-elements */
+}
+
+/* Extra obvious hover effect for links */
+.ProseMirror a:hover,
+.ProseMirror .editor-link:hover,
+.ProseMirror [data-type="link"]:hover,
+.ProseMirror span[href]:hover,
+.ProseMirror mark[href]:hover,
+.ProseMirror *[href]:hover,
+.ProseMirror *[data-styled="true"]:hover {
+  background-color: rgba(26, 115, 232, 0.15) !important;
+  border-bottom: 1px solid #1a73e8 !important;
+  text-decoration: underline !important;
+  box-shadow: 0 1px 2px rgba(26, 115, 232, 0.3) !important;
+}
+
+/* Force color on all children within links too */
+.ProseMirror a *,
+.ProseMirror .editor-link *,
+.ProseMirror [data-type="link"] *,
+.ProseMirror span[href] *,
+.ProseMirror *[href] * {
+  color: #1a73e8 !important;
+  text-decoration: underline !important;
+}
+
+/* Active state for clicks */
+.ProseMirror a:active,
+.ProseMirror .editor-link:active,
+.ProseMirror [data-type="link"]:active,
+.ProseMirror span[href]:active,
+.ProseMirror *[href]:active,
+.ProseMirror *[data-styled="true"]:active {
+  background-color: rgba(26, 115, 232, 0.2) !important;
+  transform: translateY(1px) !important;
+}
+
+/* Explicitly target the rendered links during editing */
+.tiptap a,
+.tiptap [href],
+.tiptap [data-type="link"],
+.tiptap .editor-link {
+  color: #1a73e8 !important;
+  text-decoration: underline !important;
+  background-color: rgba(26, 115, 232, 0.1) !important;
+  border-bottom: 1px solid #1a73e8 !important;
+  border-radius: 2px !important;
+}
+
+/* Focus indicator for keyboard navigation */
+.ProseMirror a:focus,
+.ProseMirror .editor-link:focus,
+.ProseMirror [data-type="link"]:focus,
+.ProseMirror *[href]:focus {
+  outline: 2px solid rgba(26, 115, 232, 0.4) !important;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2) !important;
+}
+
+
+
+
+
+/* Line spacing classes */
+.line-spacing-1-0 {
+  line-height: 1.0 !important;
+}
+
+.line-spacing-1-15 {
+  line-height: 1.15 !important;
+}
+
+.line-spacing-1-5 {
+  line-height: 1.5 !important;
+}
+
+.line-spacing-2-0 {
+  line-height: 2.0 !important;
+}
+
+/* Spacing before */
+.spacing-before-0pt {
+  margin-top: 0pt !important;
+}
+
+.spacing-before-6pt {
+  margin-top: 6pt !important;
+}
+
+.spacing-before-12pt {
+  margin-top: 12pt !important;
+}
+
+/* Spacing after */
+.spacing-after-0pt {
+  margin-bottom: 0pt !important;
+}
+
+.spacing-after-6pt {
+  margin-bottom: 6pt !important;
+}
+
+.spacing-after-12pt {
+  margin-bottom: 12pt !important;
+}
+
+
+.line-spacing-1-0 {
+  line-height: 1.0;
+}
+
+.line-spacing-1-15 {
+  line-height: 1.15;
+}
+
+.line-spacing-1-5 {
+  line-height: 1.5;
+}
+
+.line-spacing-2-0 {
+  line-height: 2.0;
+}
+
+/* Print-specific styles */
+@media print {
+
+  /* ---- HIDE ALL UI ELEMENTS ---- */
+  /* Hide UI elements that should not be printed */
+  .toolbar,
+  nav,
+  header,
+  .sidebar,
+  .menu-bar,
+  button,
+  .dropdown-menu,
+  .dialog,
+  .footer-controls,
+  .editor-toolbar,
+  .editor-header,
+  .comment-sidebar,
+  .floating-menu,
+  .print-button,
+  .user-menu,
+  .sidebar-toggle,
+  input[type="button"],
+  .file-menu,
+  .app-header,
+  .ql-toolbar,
+  .dropdown,
+  .page-controls,
+  .tab-bar,
+  .toolbar-container,
+  #toolbar,
+  /* Hide any buttons */
+  [role="button"],
+  /* Any element with print-hide class */
+  .print-hide,
+  /* Selectors to target standard navigation patterns */
+  [class*="navigation"],
+  [class*="nav-"],
+  [class*="navbar"],
+  [class*="header-"],
+  [class*="toolbar"],
+  [class*="controls"],
+  /* Specific toolbar/menu classes from the app */
+  [class*="menu-"],
+  [class*="dropdown-"],
+  [class*="button-"],
+  [class*="btn-"],
+  /* Classes that likely indicate UI controls */
+  [class*="control-"],
+  [class*="ui-"] {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* ---- DOCUMENT FORMATTING ---- */
+  /* Set up page size and margins */
+  @page {
+    size: letter;
+    /* Can be 'letter' or 'A4' */
+    margin: 0;
+    /* Remove default margins to match our visual layout exactly */
+  }
+
+  /* Ensure document pages render properly */
+  .document-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    page-break-inside: avoid !important;
+    page-break-after: always !important;
+    /* Fixed dimensions to match standard letter size */
+    width: 8.5in !important;
+    height: 11in !important;
+    position: relative !important;
+    overflow: hidden !important;
+    /* Critical - prevent content overflow */
+    display: block !important;
+  }
+
+  /* Last page shouldn't force a page break after */
+  .document-page:last-child {
+    page-break-after: auto !important;
+  }
+
+  /* Remove background colors and shadows */
+  html,
+  body {
+    background-color: white !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .editor-wrapper,
+  .document-container {
+    background-color: white !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* ---- CONTENT DISPLAY FIXES ---- */
+  /* Make sure page content is fully visible but preserve exact margins */
+  .page-content {
+    position: relative !important;
+    margin: 1in !important;
+    /* Standard 1-inch margins inside the page */
+    height: calc(11in - 2in) !important;
+    /* Account for top and bottom margins */
+    overflow: hidden !important;
+    /* Critical: prevent content overflow */
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: black !important;
+    width: calc(8.5in - 2in) !important;
+    /* Account for left and right margins */
+  }
+
+  /* Override text flow to preserve visual layout exactly */
+  .page-content p,
+  .page-content div,
+  .page-content span {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Fix header/footer positioning */
+  .page-header,
+  .page-footer {
+    position: absolute !important;
+    left: 1in !important;
+    right: 1in !important;
+    font-size: 9pt !important;
+    color: #666 !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    overflow: visible !important;
+  }
+
+  .page-header {
+    top: 0.5in !important;
+  }
+
+  .page-footer {
+    bottom: 0.5in !important;
+  }
+
+  /* TipTap editor should be fully visible */
+  .tiptap,
+  .ProseMirror {
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: black !important;
+    max-width: 100% !important;
+  }
+
+  /* Make links print appropriately (show URLs) */
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    font-style: italic;
+  }
+
+  /* Hide any custom page break indicators - real page breaks will occur naturally */
+  hr.page-break {
+    display: none !important;
+  }
+
+  /* Fix for links in printed docs */
+  .ProseMirror a,
+  .tiptap a,
+  [href],
+  a {
+    text-decoration: underline !important;
+    color: black !important;
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  /* Hide comments in print */
+  [data-comment-id],
+  .comment-mark {
+    background-color: transparent !important;
+    border-bottom: none !important;
+  }
+
+  /* Ensure all content is visible and properly formatted */
+  * {
+    box-sizing: border-box !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Force hide any remaining buttons/controls */
+  button,
+  input[type="button"],
+  select,
+  .toast-container,
+  .dropdown,
+  .popover,
+  .dialog,
+  .modal-container {
+    display: none !important;
+  }
+
+  /* Ensure tables print properly */
+  table {
+    width: auto !important;
+    border-collapse: collapse !important;
+  }
+
+  /* Prevent automatic scaling or resizing by browser */
+  img,
+  svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+
+/* .active-search-highlight-brutal {
+  color: orange;
+}
+
+.search-highlight-brutal {
+  color: yellow;
+}
+
+
+.red-highlight {
+  background-color: yellow !important;
+  color: yellow !important;
+} */

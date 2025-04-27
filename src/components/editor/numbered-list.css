@@ -1,0 +1,109 @@
+/*
+ * Google Docs-style Numbered List CSS
+ * This file defines the correct styling for nested ordered lists
+ * Each nesting level has a distinct marker style matching Google Docs exactly
+ */
+
+/* Base styling for ordered lists */
+ol {
+  counter-reset: list-counter;
+  list-style-type: none !important;
+  padding-left: 0; /* Remove default padding */
+  margin-left: 0.3em; /* Adjust margin to match Google Docs */
+}
+
+/* List items with proper indentation */
+ol li {
+  position: relative;
+  padding-left: 1.7em; /* Space for the marker */
+  margin: 0.3em 0; /* Match Google Docs spacing between items */
+  counter-increment: list-counter;
+  line-height: 1.5; /* Standard line height */
+}
+
+/* Marker positioning and style */
+ol li::before {
+  position: absolute;
+  left: 0;
+  font-weight: 400; /* Regular font weight for markers */
+  color: #000; /* Standard text color */
+  text-align: right;
+  width: 1.5em; /* Width for the marker */
+}
+
+/* Level 1: 1. 2. 3. (numbers followed by period) */
+ol > li::before {
+  content: counter(list-counter) ". ";
+}
+
+/* Level 2: a. b. c. (lowercase letters) */
+ol > li > ol > li {
+  counter-increment: list-counter-2;
+}
+ol > li > ol > li::before {
+  content: counter(list-counter-2, lower-alpha) ". ";
+}
+
+/* Level 3: i. ii. iii. (lowercase roman numerals) */
+ol > li > ol > li > ol > li {
+  counter-increment: list-counter-3;
+}
+ol > li > ol > li > ol > li::before {
+  content: counter(list-counter-3, lower-roman) ". ";
+}
+
+/* Level 4: A. B. C. (uppercase letters) */
+ol > li > ol > li > ol > li > ol > li {
+  counter-increment: list-counter-4;
+}
+ol > li > ol > li > ol > li > ol > li::before {
+  content: counter(list-counter-4, upper-alpha) ". ";
+}
+
+/* Level 5: I. II. III. (uppercase roman numerals) */
+ol > li > ol > li > ol > li > ol > li > ol > li {
+  counter-increment: list-counter-5;
+}
+ol > li > ol > li > ol > li > ol > li > ol > li::before {
+  content: counter(list-counter-5, upper-roman) ". ";
+}
+
+/* Level 6+: Cycles back to style of level 1 */
+ol > li > ol > li > ol > li > ol > li > ol > li > ol > li {
+  counter-increment: list-counter-6;
+}
+ol > li > ol > li > ol > li > ol > li > ol > li > ol > li::before {
+  content: counter(list-counter-6) ". ";
+}
+
+/* Custom spacing adjustments to match Google Docs exactly */
+.ProseMirror ol {
+  margin-top: 0.2em; /* Top margin for ordered lists */
+  margin-bottom: 0.2em; /* Bottom margin for ordered lists */
+}
+
+.ProseMirror ol li {
+  min-height: 1.5em; /* Minimum height for list items */
+}
+
+/* Fix for padding on deeply nested lists */
+.ProseMirror ol li ol {
+  padding-left: 0.6em; /* Indent nested lists just enough */
+}
+
+/* Ensure proper text wrapping in list items */
+.ProseMirror ol li p {
+  margin: 0; /* Remove margins from paragraphs in list items */
+  display: inline; /* Make paragraphs inline within list items */
+}
+
+/* Improve cursor positioning for better editing experience */
+.ProseMirror ol li:hover {
+  outline: none; /* Remove outlines on hover */
+}
+
+/* Proper styling for active/focused list items */
+.ProseMirror ol li.ProseMirror-selectednode {
+  outline: none; /* No outlines for selected nodes */
+  background-color: rgba(35, 131, 226, 0.14); /* Google Docs selection color */
+}

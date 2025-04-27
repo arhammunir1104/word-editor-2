@@ -1,0 +1,53 @@
+/* Google Docs-like header and footer styling */
+
+/* When editing headers/footers */
+.editing-header-footer .page-content {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.page-header:hover,
+.page-footer:hover {
+  background-color: rgba(240, 247, 255, 0.3) !important;
+}
+
+/* Style for the formatting toolbar */
+.page-header .flex,
+.page-footer .flex {
+  background-color: #f7f9fc;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Button hover effect */
+.page-header button:hover,
+.page-footer button:hover {
+  background-color: #e8f0fe;
+}
+
+/* ContentEditable area - Google Docs like */
+.page-header [contenteditable],
+.page-footer [contenteditable] {
+  min-height: 24px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* Make placeholder text lighter */
+.text-gray-400 {
+  color: #9ca3af;
+}
+
+/* Highlight effect for headers/footers when toggled from menu */
+@keyframes pulseBorder {
+  0% { border-color: #e5e7eb; }
+  50% { border-color: #4285f4; }
+  100% { border-color: #e5e7eb; }
+}
+
+.highlight-clickable {
+  animation: pulseBorder 1s ease-in-out 2;
+  background-color: rgba(240, 247, 255, 0.5) !important;
+  cursor: pointer !important;
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
+}

@@ -1,0 +1,111 @@
+.floating-image-toolbar {
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  padding: 6px 0;
+  width: 300px;
+  user-select: none;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0.95;
+  backdrop-filter: blur(4px);
+  border: 1px solid #e0e0e0;
+}
+
+.floating-image-toolbar:hover {
+  opacity: 1;
+}
+
+.toolbar-drag-handle {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  background-color: #f7f7f7;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  cursor: move;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  user-select: none;
+}
+
+.toolbar-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 8px;
+}
+
+.toolbar-separator {
+  height: 24px;
+  margin: 0 6px;
+}
+
+.alignment-controls,
+.size-controls {
+  display: flex;
+  align-items: center;
+}
+
+.close-button {
+  margin-left: auto;
+}
+
+/* Multi-image toolbar specific styles */
+.multi-image-toolbar {
+  width: 350px;
+}
+
+.multi-image-toolbar .toolbar-drag-handle {
+  background-color: #f0f4f9;
+  color: #1a73e8;
+}
+
+.multi-image-toolbar .selection-count {
+  margin-left: auto;
+  font-size: 12px;
+  color: #5f6368;
+  padding: 2px 6px;
+  background-color: #e8f0fe;
+  border-radius: 12px;
+}
+
+.multi-operations-section {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.multi-operations-section .operation-row {
+  display: flex;
+  gap: 8px;
+}
+
+.distribute-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+/* Styles for toolbar buttons with active states */
+.toolbar-active-button {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+}
+
+/* Animation for toolbar appearance */
+@keyframes toolbarFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.floating-image-toolbar {
+  animation: toolbarFadeIn 0.2s ease-out;
+}

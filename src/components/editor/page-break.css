@@ -1,0 +1,44 @@
+.page-break {
+  border: none;
+  border-top: 1px dashed #999;
+  margin: 1rem 0;
+  page-break-after: always;
+  position: relative;
+  height: 20px;
+  text-align: center;
+}
+
+.page-break::after {
+  content: 'Page Break';
+  display: inline-block;
+  background: white;
+  padding: 0 10px;
+  color: #888;
+  font-size: 12px;
+  position: relative;
+  top: -10px;
+}
+
+.editor-page-break-indicator {
+  position: relative;
+  margin: 1rem 0;
+  text-align: center;
+  color: #888;
+  font-size: 12px;
+  border-top: 1px dashed #ccc;
+}
+
+.editor-page-break-indicator span {
+  display: inline-block;
+  background: white;
+  padding: 0 10px;
+  position: relative;
+  top: -10px;
+}
+
+/* Multi-page editor styles */
+.multi-page-editor {
+  border: 1px solid #e0e0e0;
+  min-height: 11in;
+  position: relative;
+}

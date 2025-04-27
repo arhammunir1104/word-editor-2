@@ -1,0 +1,14 @@
+/* Direct DOM Red Box Styling */
+.red-box-direct {
+  width: 100px !important;
+  height: 100px !important;
+  background-color: red !important;
+  margin: 10px 0 !important;
+  border: 2px solid darkred !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+  user-select: none !important;
+  display: block !important;
+  position: relative !important;
+  cursor: pointer !important;
+}

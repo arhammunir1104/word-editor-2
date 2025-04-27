@@ -1,0 +1,70 @@
+/**
+ * Proper Link Styles - Implemented using ChatGPT's recommended approach
+ * These styles target only content inside the editor and use CSS selectors for efficiency
+ */
+
+/* Primary Link Styling - Using classes from our custom Link extension */
+.ProseMirror a[href],
+.ProseMirror a.editor-direct-link,
+.ProseMirror a.custom-link,
+.ProseMirror a[data-type="link"],
+.ProseMirror a[data-is-link="true"] {
+  color: red !important;
+  background-color: yellow !important;
+  text-decoration: underline !important;
+  border-radius: 2px !important;
+  padding: 0 2px !important;
+  margin: 0 1px !important;
+  border-bottom: 1px solid red !important;
+  font-weight: bold !important;
+  box-shadow: 0 0 0 1px red !important;
+  cursor: pointer !important;
+}
+
+/* Hover effects for links */
+.ProseMirror a[href]:hover,
+.ProseMirror a.editor-direct-link:hover,
+.ProseMirror a.custom-link:hover,
+.ProseMirror a[data-type="link"]:hover,
+.ProseMirror a[data-is-link="true"]:hover {
+  color: darkred !important;
+  background-color: lightyellow !important;
+  box-shadow: 0 0 0 2px darkred !important;
+}
+
+/* Focus styling for better accessibility */
+.ProseMirror a[href]:focus,
+.ProseMirror a.editor-direct-link:focus,
+.ProseMirror a.custom-link:focus {
+  outline: 2px solid rgba(255, 0, 0, 0.5) !important;
+  outline-offset: 2px !important;
+}
+
+/* Use CSS Variables for consistent theming */
+.tiptap {
+  --link-color: red;
+  --link-background: yellow;
+  --link-hover-color: darkred;
+  --link-hover-background: lightyellow;
+}
+
+/* Alternate styling method using attribute selectors */
+.ProseMirror [data-type="link"],
+.tiptap [data-is-link="true"] {
+  color: red !important;
+  background-color: yellow !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+}
+
+/* Also target any span elements that might be used as links */
+.ProseMirror span.brute-force-link,
+.ProseMirror span[data-href],
+.ProseMirror span.emergency-link {
+  color: red !important;
+  background-color: yellow !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+}

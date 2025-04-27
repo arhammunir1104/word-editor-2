@@ -1,0 +1,270 @@
+/* 
+ * Line spacing specific styles - NUCLEAR APPROACH
+ * 
+ * This file uses multiple aggressive approaches to ensure line spacing
+ * and paragraph spacing are properly applied and visible in the editor:
+ * 
+ * 1. Using !important flags on all styling rules
+ * 2. Using ultra-specific CSS selectors to increase specificity
+ * 3. Combining data attributes, inline styles, and CSS classes
+ * 4. Applying styles at multiple levels (node attributes, DOM, CSS)
+ * 5. Using direct attribute targeting
+ * 6. Using a combination of approaches to ensure styles are applied
+ *
+ * This aggressive approach is necessary due to complex CSS inheritance
+ * and specificity issues in the TipTap/ProseMirror editor environment
+ */
+
+/* NUCLEAR OPTION - Directly set line spacing without data attributes */
+.ProseMirror p,
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  line-height: inherit;
+}
+
+/* Specific rules for different spacing values */
+.line-spacing-1-0 .ProseMirror p,
+.line-spacing-1-0 .ProseMirror li,
+.ProseMirror p.line-spacing-1-0 {
+  line-height: 1.0 !important;
+}
+
+.line-spacing-1-15 .ProseMirror p,
+.line-spacing-1-15 .ProseMirror li,
+.ProseMirror p.line-spacing-1-15 {
+  line-height: 1.15 !important;
+}
+
+.line-spacing-1-5 .ProseMirror p,
+.line-spacing-1-5 .ProseMirror li,
+.ProseMirror p.line-spacing-1-5 {
+  line-height: 1.5 !important;
+}
+
+.line-spacing-2-0 .ProseMirror p,
+.line-spacing-2-0 .ProseMirror li,
+.ProseMirror p.line-spacing-2-0 {
+  line-height: 2.0 !important;
+}
+
+/* Apply line spacing to paragraphs and headings */
+.ProseMirror p[data-line-spacing],
+.ProseMirror h1[data-line-spacing],
+.ProseMirror h2[data-line-spacing],
+.ProseMirror h3[data-line-spacing],
+.ProseMirror h4[data-line-spacing],
+.ProseMirror h5[data-line-spacing],
+.ProseMirror h6[data-line-spacing] {
+  /* Line spacing will be applied inline via the renderHTML function */
+}
+
+/* Create visual spacing feedback when spacing is active */
+.ProseMirror p:not([data-line-spacing="1.15"]):not(:empty),
+.ProseMirror h1:not([data-line-spacing="1.15"]):not(:empty),
+.ProseMirror h2:not([data-line-spacing="1.15"]):not(:empty),
+.ProseMirror h3:not([data-line-spacing="1.15"]):not(:empty) {
+  position: relative;
+}
+
+/* Spacing Before */
+.ProseMirror p[data-spacing-before]:not([data-spacing-before="0pt"]),
+.ProseMirror h1[data-spacing-before]:not([data-spacing-before="0pt"]),
+.ProseMirror h2[data-spacing-before]:not([data-spacing-before="0pt"]),
+.ProseMirror h3[data-spacing-before]:not([data-spacing-before="0pt"]),
+.ProseMirror h4[data-spacing-before]:not([data-spacing-before="0pt"]),
+.ProseMirror h5[data-spacing-before]:not([data-spacing-before="0pt"]),
+.ProseMirror h6[data-spacing-before]:not([data-spacing-before="0pt"]) {
+  /* Spacing before will be applied inline via the renderHTML function */
+}
+
+/* Spacing After */
+.ProseMirror p[data-spacing-after]:not([data-spacing-after="0pt"]),
+.ProseMirror h1[data-spacing-after]:not([data-spacing-after="0pt"]),
+.ProseMirror h2[data-spacing-after]:not([data-spacing-after="0pt"]),
+.ProseMirror h3[data-spacing-after]:not([data-spacing-after="0pt"]),
+.ProseMirror h4[data-spacing-after]:not([data-spacing-after="0pt"]),
+.ProseMirror h5[data-spacing-after]:not([data-spacing-after="0pt"]),
+.ProseMirror h6[data-spacing-after]:not([data-spacing-after="0pt"]) {
+  /* Spacing after will be applied inline via the renderHTML function */
+}
+
+/* Force refresh to ensure proper CSS inheritance */
+.ProseMirror p,
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  position: relative;
+  /* Ensures proper stacking context */
+}
+
+/* Direct override to ensure styles are visible - Force higher specificity */
+.editor-content .ProseMirror p[style*="line-height"],
+.editor-content .ProseMirror h1[style*="line-height"],
+.editor-content .ProseMirror h2[style*="line-height"],
+.editor-content .ProseMirror h3[style*="line-height"],
+.editor-content .ProseMirror h4[style*="line-height"],
+.editor-content .ProseMirror h5[style*="line-height"],
+.editor-content .ProseMirror h6[style*="line-height"],
+/* Add selector with data attribute for better targeting */
+.editor-content .ProseMirror p[data-line-spacing],
+.editor-content .ProseMirror h1[data-line-spacing],
+.editor-content .ProseMirror h2[data-line-spacing],
+.editor-content .ProseMirror h3[data-line-spacing],
+.editor-content .ProseMirror h4[data-line-spacing],
+.editor-content .ProseMirror h5[data-line-spacing],
+.editor-content .ProseMirror h6[data-line-spacing] {
+  line-height: var(--line-height, inherit) !important;
+}
+
+/* Extremely specific selector to override everything */
+.ProseMirror p[data-line-spacing="1.0"] {
+  line-height: 1.0 !important;
+}
+
+.ProseMirror p[data-line-spacing="1.15"] {
+  line-height: 1.15 !important;
+}
+
+.ProseMirror p[data-line-spacing="1.5"] {
+  line-height: 1.5 !important;
+}
+
+.ProseMirror p[data-line-spacing="2.0"] {
+  line-height: 2.0 !important;
+}
+
+/* Override for all paragraphs with any line spacing */
+.ProseMirror p[data-line-spacing],
+.ProseMirror div[data-line-spacing] {
+  line-height: attr(data-line-spacing) !important;
+}
+
+/* Super aggressive direct descendant approaches */
+.ProseMirror>p,
+.ProseMirror>div>p,
+.ProseMirror>div>div>p {
+  line-height: inherit !important;
+}
+
+/* Last resort styles - use !important with super specific selectors */
+body .editor-content .ProseMirror p[style*="line-height"],
+html body .editor-content .ProseMirror p[data-line-spacing] {
+  line-height: var(--line-height, attr(data-line-spacing)) !important;
+}
+
+.editor-content .ProseMirror p[style*="margin-top"],
+.editor-content .ProseMirror h1[style*="margin-top"],
+.editor-content .ProseMirror h2[style*="margin-top"],
+.editor-content .ProseMirror h3[style*="margin-top"],
+.editor-content .ProseMirror h4[style*="margin-top"],
+.editor-content .ProseMirror h5[style*="margin-top"],
+.editor-content .ProseMirror h6[style*="margin-top"],
+/* Add selector with data attribute for better targeting */
+.editor-content .ProseMirror p[data-spacing-before],
+.editor-content .ProseMirror h1[data-spacing-before],
+.editor-content .ProseMirror h2[data-spacing-before],
+.editor-content .ProseMirror h3[data-spacing-before],
+.editor-content .ProseMirror h4[data-spacing-before],
+.editor-content .ProseMirror h5[data-spacing-before],
+.editor-content .ProseMirror h6[data-spacing-before] {
+  margin-top: var(--margin-top, 0) !important;
+}
+
+/* Override for specific spacing before values */
+.ProseMirror p[data-spacing-before="0pt"] {
+  margin-top: 0 !important;
+}
+
+.ProseMirror p[data-spacing-before="6pt"] {
+  margin-top: 6pt !important;
+}
+
+.ProseMirror p[data-spacing-before="12pt"] {
+  margin-top: 12pt !important;
+}
+
+.ProseMirror p[data-spacing-before="18pt"] {
+  margin-top: 18pt !important;
+}
+
+.ProseMirror p[data-spacing-before="24pt"] {
+  margin-top: 24pt !important;
+}
+
+/* Super aggressive direct approaches for spacing before */
+.ProseMirror p[data-spacing-before],
+.ProseMirror div[data-spacing-before] {
+  margin-top: attr(data-spacing-before) !important;
+}
+
+/* Last resort styles - use !important with super specific selectors */
+body .editor-content .ProseMirror p[style*="margin-top"],
+html body .editor-content .ProseMirror p[data-spacing-before] {
+  margin-top: var(--margin-top, attr(data-spacing-before)) !important;
+}
+
+.editor-content .ProseMirror p[style*="margin-bottom"],
+.editor-content .ProseMirror h1[style*="margin-bottom"],
+.editor-content .ProseMirror h2[style*="margin-bottom"],
+.editor-content .ProseMirror h3[style*="margin-bottom"],
+.editor-content .ProseMirror h4[style*="margin-bottom"],
+.editor-content .ProseMirror h5[style*="margin-bottom"],
+.editor-content .ProseMirror h6[style*="margin-bottom"],
+/* Add selector with data attribute for better targeting */
+.editor-content .ProseMirror p[data-spacing-after],
+.editor-content .ProseMirror h1[data-spacing-after],
+.editor-content .ProseMirror h2[data-spacing-after],
+.editor-content .ProseMirror h3[data-spacing-after],
+.editor-content .ProseMirror h4[data-spacing-after],
+.editor-content .ProseMirror h5[data-spacing-after],
+.editor-content .ProseMirror h6[data-spacing-after] {
+  margin-bottom: var(--margin-bottom, 0) !important;
+}
+
+/* Override for specific spacing after values */
+.ProseMirror p[data-spacing-after="0pt"] {
+  margin-bottom: 0 !important;
+}
+
+.ProseMirror p[data-spacing-after="6pt"] {
+  margin-bottom: 6pt !important;
+}
+
+.ProseMirror p[data-spacing-after="12pt"] {
+  margin-bottom: 12pt !important;
+}
+
+.ProseMirror p[data-spacing-after="18pt"] {
+  margin-bottom: 18pt !important;
+}
+
+.ProseMirror p[data-spacing-after="24pt"] {
+  margin-bottom: 24pt !important;
+}
+
+/* Super aggressive direct approaches for spacing after */
+.ProseMirror p[data-spacing-after],
+.ProseMirror div[data-spacing-after] {
+  margin-bottom: attr(data-spacing-after) !important;
+}
+
+/* Last resort styles - use !important with super specific selectors */
+body .editor-content .ProseMirror p[style*="margin-bottom"],
+html body .editor-content .ProseMirror p[data-spacing-after] {
+  margin-bottom: var(--margin-bottom, attr(data-spacing-after)) !important;
+}
+
+p[data-line-spacing] {
+  line-height: inherit !important;
+}
+
+.ProseMirror p[data-line-spacing] {
+  line-height: attr(data-line-spacing) !important;
+}

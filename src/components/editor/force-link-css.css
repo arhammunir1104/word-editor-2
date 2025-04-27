@@ -1,0 +1,73 @@
+/* Super aggressive link styling that will override any other styles */
+
+/* Target all links inside the ProseMirror editor with extreme specificity */
+.ProseMirror a,
+.ProseMirror a:link,
+.ProseMirror a:visited,
+.ProseMirror .is-link,
+.ProseMirror [href],
+.ProseMirror [data-link],
+.ProseMirror [data-type="link"],
+.ProseMirror *[href] {
+  color: red !important; /* Debug color to ensure visibility */
+  background-color: yellow !important; /* Debug background color */
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  padding: 0 2px !important;
+  border-radius: 2px !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  border-bottom: 1px solid red !important;
+}
+
+/* Special class for links we've directly styled */
+.editor-direct-link {
+  color: red !important;
+  background-color: yellow !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  padding: 0 2px !important;
+  border-radius: 2px !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  border-bottom: 1px solid red !important;
+}
+
+/* Make sure inheritance doesn't remove our styling */
+.ProseMirror * a,
+.ProseMirror * a:link,
+.ProseMirror * a:visited,
+.ProseMirror * [href],
+.ProseMirror [data-styled="true"] {
+  color: red !important;
+  background-color: yellow !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  padding: 0 2px !important;
+  border-radius: 2px !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+}
+
+/* Force link styling on any element with the href attribute */
+[href]:not(a),
+.ProseMirror span[href],
+.ProseMirror div[href],
+.ProseMirror p[href] {
+  color: red !important;
+  background-color: yellow !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  display: inline-block !important;
+}
+
+/* Ensure links are visible immediately after creation */
+.ProseMirror mark[data-type="link"],
+.ProseMirror span[data-type="link"] {
+  color: red !important;
+  background-color: yellow !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  padding: 0 2px !important;
+  display: inline-block !important;
+}
