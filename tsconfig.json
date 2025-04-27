@@ -20,3 +20,4 @@
   "include": ["src/**/*", "vite.config.ts"], // Include your source files and config
   "exclude": ["node_modules", "build", "dist"]  // Exclude build and dist directories
 }
+ 
