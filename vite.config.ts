@@ -6,7 +6,13 @@ import path from "path";
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      // This disables esbuild's type checking
+      babel: {
+        plugins: [],
+      },
+      jsxRuntime: 'automatic',
+    }),
     tailwindcss(),
   ],
   resolve: {

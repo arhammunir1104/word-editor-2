@@ -20,13 +20,13 @@ import {
   AlignLeft,
   AlignRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Label } from "../../components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
+import { Separator } from "../../components/ui/separator";
+import { Textarea } from "../../components/ui/textarea";
+import { useToast } from "../../hooks/use-toast";
 
 interface ImageModalProps {
   editor: any;
@@ -203,7 +203,6 @@ export default function ImageModal({
           {/* Image preview */}
           <div className="border rounded p-2 flex flex-col items-center">
             <div className="overflow-hidden flex items-center justify-center h-48">
-              {console.log("Image src", src)}
               <img
                 src={src}
                 style={{ border: "1px solid red" }}

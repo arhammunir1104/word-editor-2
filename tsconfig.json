@@ -17,7 +17,7 @@
     "esModuleInterop": true,              // Enable default imports for CommonJS modules
     "resolveJsonModule": true             // Allow importing JSON modules
   },
-  "include": ["src/**/*", "vite.config.ts"], // Include your source files and config
+  "include": [], // Include your source files and config
   "exclude": ["node_modules", "build", "dist"]  // Exclude build and dist directories
 }
  

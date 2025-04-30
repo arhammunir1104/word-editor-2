@@ -5,7 +5,7 @@
  */
 import React, { useState, useEffect, useRef } from 'react';
 import { Editor } from '@tiptap/core';
-import { useSearchReplaceStore } from '@/lib/search-replace-store';
+import { useSearchReplaceStore } from '../../lib/search-replace-store';
 import { ChevronUp, ChevronDown, X, Search, Check, Keyboard } from 'lucide-react';
 import { HistoryManager } from './history-manager';
 import './search-styles.css';

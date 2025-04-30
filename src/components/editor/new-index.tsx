@@ -204,7 +204,8 @@ export default function EditorComponent({
 
   // Main render
   return (
-    <CommentProvider>
+    // <CommentProvider>
+    <>
       <div className="flex flex-col h-full w-full bg-white editor-wrapper">
         {/* Editor Events - Non-visual component to handle events */}
         <EditorEvents
@@ -266,6 +267,7 @@ export default function EditorComponent({
           selectedImageId={selectedImageId}
         />
       </div>
-    </CommentProvider>
+    {/* </CommentProvider> */}
+    </>
   );
 }

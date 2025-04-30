@@ -22,16 +22,16 @@ export const INDENT_AMOUNT = 36;
 export const IndentationExtension = Extension.create({
   name: 'indentation',
 
-  addCommands() {
-    return {
-      indent: () => ({ editor }) => {
-        return indentParagraph(editor);
-      },
-      outdent: () => ({ editor }) => {
-        return outdentParagraph(editor);
-      },
-    };
-  },
+  // addCommands() {
+  //   return {
+  //     indent: () => ({ editor }) => {
+  //       return indentParagraph(editor);
+  //     },
+  //     outdent: () => ({ editor }) => {
+  //       return outdentParagraph(editor);
+  //     },
+  //   };
+  // },
 
   addKeyboardShortcuts() {
     return {

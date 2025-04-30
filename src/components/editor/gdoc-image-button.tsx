@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'lucide-react';
 import { Button } from '../../components/ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../components/ui/tooltip';
 
 interface GDocImageButtonProps {
   editor: any;
